@@ -7,7 +7,7 @@ class Rocks{
         this.loader = new GLTFLoader();
 
         this.loader.load(
-            '../models/Rocks.glb',
+            '../assets/models/Rocks.glb',
             (gltf) => {
                 const model = gltf.scene;
 
