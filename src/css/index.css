@@ -1,0 +1,30 @@
+:root{
+
+    --default-text-color: #FFFFF6;
+
+    --start-bg: url('../assets/image/start_bg.svg') no-repeat center/cover;
+
+    --default-title-font: 'Cinzel_Decorative', sans-serif;
+    --default-text-font:  'Cinzel', sans-serif;
+}
+
+@font-face {
+
+    font-family: 'Cinzel';
+    src: url('../assets/font/Cinzel/Cinzel-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'Cinzel_Decorative';
+    src: url('../assets/font/Cinzel_Decorative/CinzelDecorative-Bold.ttf');
+}
+
+
+
+
+
+body{
+
+    margin: 0;
+    box-sizing: border-box;
+}
