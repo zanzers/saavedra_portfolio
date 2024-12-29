@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import Rocks from './rocks';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 class SceneManager {
@@ -17,7 +18,7 @@ class SceneManager {
       0.1,
       1000
     );
-    this.camera.position.set(0, 2, 5);
+    this.camera.position.set(0, 1.8, 5);
 
     if(gui){
         this.setupGui(gui);
@@ -27,8 +28,9 @@ class SceneManager {
     container.appendChild(this.stats.dom);
 
     this.addHelpers();
-    this.addObjects();
     this.addLights();
+
+    new Rocks(this.scene);
 
     window.addEventListener('resize', () => this.onWindowResize());
   }
@@ -42,21 +44,6 @@ class SceneManager {
     const gridHelper = new THREE.GridHelper(30);
     this.scene.add(gridHelper);
   }
-
-  addObjects() {
-    const boxGeo = new THREE.BoxGeometry();
-    const boxMaterial = new THREE.MeshBasicMaterial({ color: 'pink' });
-    const box = new THREE.Mesh(boxGeo, boxMaterial);
-    box.position.set(1, 1, 1);
-    this.scene.add(box);
-
-    const planeGeo = new THREE.PlaneGeometry(30, 30);
-    const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xffff });
-    const plane = new THREE.Mesh(planeGeo, planeMaterial);
-    plane.rotation.x = -0.5 * Math.PI;
-    this.scene.add(plane);
-  }
-
   setupGui(gui){
     const cameraFolder = gui.addFolder('Camera Position');
     cameraFolder.add(this.camera.position, 'x', -50, 50, 0.1).name('X Axis')
@@ -66,8 +53,10 @@ class SceneManager {
 }
 
   addLights() {
-    const directionLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionLight.position.set(30, 50, 0);
+    const directionLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionLight.position.set(0, 5, 0);
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.8); 
+    this.scene.add(ambientLight);
     this.scene.add(directionLight);
   }
 
